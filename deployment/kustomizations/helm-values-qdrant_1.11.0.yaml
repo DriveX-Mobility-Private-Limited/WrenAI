@@ -136,7 +136,7 @@ topologySpreadConstraints: []
 
 persistence:
   accessModes: ["ReadWriteOnce"]
-  size: 20Gi
+  size: 50Gi
   annotations: {}
   storageClassName: gp2
 # If you use snapshots or the snapshot shard transfer mechanism, we recommend
