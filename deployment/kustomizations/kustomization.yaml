@@ -57,15 +57,9 @@ resources:
   - base/pvc.yaml
   - base/svc.yaml
 ### Modify these examples first and uncomment them:
-  # - examples/ingress-wren_example.yaml
+  - examples/ingress-wren_example.yaml
   # - examples/certificate-wren_example.yaml
 ### Usually you do not need to generate a certificate for Qdrant
 #  - examples/certificate-qdrant_example.yaml
 ### Best practice is to create and deploy Secrets manually, not as part of kustomization or GitOps!
 #  - examples/secret-wren_example.yaml
-
-# ============================================
-# Node Selectors and Tolerations
-# ============================================
-patchesStrategicMerge:
-  - patches/node-selectors.yaml

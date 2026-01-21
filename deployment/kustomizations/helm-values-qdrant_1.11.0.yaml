@@ -86,13 +86,13 @@ additionalLabels: {}
 podAnnotations: {}
 podLabels: {}
 
-resources: {}
-  # limits:
-  #   cpu: 100m
-  #   memory: 128Mi
-  # requests:
-  #   cpu: 100m
-  #   memory: 128Mi
+resources:
+  limits:
+    cpu: 100m
+    memory: 128Mi
+  requests:
+    cpu: 100m
+    memory: 128Mi
 
 containerSecurityContext:
   runAsNonRoot: true
@@ -119,9 +119,16 @@ lifecycle:
 # user and fsGroup
 updateVolumeFsOwnership: true
 
-nodeSelector: {}
+nodeSelector:
+  if-wren-ai-pod: 'true'
 
-tolerations: []
+tolerations:
+  - key: "if-wren-ai-pod"
+    value: "true"
+    effect: "NoSchedule"
+  - key: "if-monitoring-pod"
+    value: "true"
+    effect: "NoSchedule"
 
 affinity: {}
 
@@ -131,8 +138,7 @@ persistence:
   accessModes: ["ReadWriteOnce"]
   size: 20Gi
   annotations: {}
-#  storageClassName: vsphere-retain
-
+  storageClassName: gp2
 # If you use snapshots or the snapshot shard transfer mechanism, we recommend
 # creating a separate volume of the same size as your main volume so that your
 # cluster won't crash if the snapshot is too big.
